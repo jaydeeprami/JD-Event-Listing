@@ -81,9 +81,10 @@ class JD_Event_Listing_Admin {
 			$show_google_map = get_post_meta( $post_id, 'jd_event_show_google_map', true );
 
 			wp_localize_script( JD_EVENT_LISTING_SLUG, 'getLatLong', array(
-				'lat'         => $jd_event_lat,
-				'long'        => $jd_event_long,
-				'is_map_show' => $show_google_map,
+				'lat'                => $jd_event_lat,
+				'long'               => $jd_event_long,
+				'is_map_show'        => $show_google_map,
+				'geo_code_error_msg' => __( 'Geocode was not successful for the following reason:', 'jd-event-list' ),
 			) );
 		}
 	}
