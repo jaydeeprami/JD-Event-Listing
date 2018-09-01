@@ -42,6 +42,9 @@ $jd_event_long = ! empty( $jd_event_long ) ? $jd_event_long : '';
 // Event address.
 $jd_event_address = get_post_meta( $post_id, 'jd_event_address', true );
 $jd_event_address = ! empty( $jd_event_address ) ? $jd_event_address : '';
+
+$jd_event_listing = get_option( 'jd_event_listing' );
+$api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && ! empty( $jd_event_listing['jd_event_google_map_api'] ) ) ? $jd_event_listing['jd_event_google_map_api'] : '';
 ?>
 <article id="<?php echo absint( $post_id ); ?>" class="jd-event-listing">
 
@@ -84,10 +87,11 @@ $jd_event_address = ! empty( $jd_event_address ) ? $jd_event_address : '';
 				<span class="jd_event_address"><?php echo esc_html( $jd_event_address ); ?></span>
 			</div>
 
-			<div class="event-detail">
-				<button class="show_google_map"><?php esc_html_e( 'Show Google Map', 'jd-event-listing' ); ?></button>
-			</div>
-
+			<?php if ( ! empty( $api_key ) ) : ?>
+				<div class="event-detail">
+					<button class="show_google_map"><?php esc_html_e( 'Show Google Map', 'jd-event-listing' ); ?></button>
+				</div>
+			<?php endif; ?>
 		</div>
 	</header><!-- .entry-header -->
 
