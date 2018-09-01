@@ -20,12 +20,17 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 
 			<?php
+
+			$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+
 			$args = array(
-				'post_type'  => 'events',
-				'meta_key'   => 'jd_event_start_date',
-				'orderby'    => 'meta_value',
-				'order'      => 'ASC',
-				'meta_query' => array(
+				'post_type'      => 'events',
+				'meta_key'       => 'jd_event_start_date',
+				'orderby'        => 'meta_value',
+				'order'          => 'ASC',
+				'posts_per_page' => 5,
+				'paged'          => $paged,
+				'meta_query'     => array(
 					array(
 						'key'     => 'jd_event_start_date',
 						'type'    => 'numeric',
@@ -49,7 +54,24 @@ get_header(); ?>
 				jd_event_get_template_part( 'no-event' );
 
 			endif;
+
 			?>
+			<div class="jd_events_pagination">
+				<?php
+				$big = 999999999;
+				echo paginate_links( array(
+					'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+					'format'  => '?paged=%#%',
+					'current' => max( 1, get_query_var( 'paged' ) ),
+					'total'   => $wp_query->max_num_pages
+				) );
+				?>
+			</div>
+			<?php
+			// Reset wp_query.
+			wp_reset_postdata();
+			?>
+
 		</main><!-- #main -->
 	</div><!-- #primary -->
 	<?php get_sidebar(); ?>
