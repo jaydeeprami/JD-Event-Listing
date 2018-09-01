@@ -24,13 +24,12 @@ get_header(); ?>
 			$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
 			$args = array(
-				'post_type'      => 'events',
-				'meta_key'       => 'jd_event_start_date',
-				'orderby'        => 'meta_value',
-				'order'          => 'ASC',
-				'posts_per_page' => 5,
-				'paged'          => $paged,
-				'meta_query'     => array(
+				'post_type'  => 'events',
+				'meta_key'   => 'jd_event_start_date',
+				'orderby'    => 'meta_value',
+				'order'      => 'ASC',
+				'paged'      => $paged,
+				'meta_query' => array(
 					array(
 						'key'     => 'jd_event_start_date',
 						'type'    => 'numeric',
@@ -43,8 +42,8 @@ get_header(); ?>
 
 			if ( have_posts() ) :
 
-				while ( have_posts() ): the_post();
-
+				while ( have_posts() ) :
+					the_post();
 					jd_event_get_template_part( 'event-listing' );
 
 				endwhile;
@@ -63,7 +62,7 @@ get_header(); ?>
 					'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
 					'format'  => '?paged=%#%',
 					'current' => max( 1, get_query_var( 'paged' ) ),
-					'total'   => $wp_query->max_num_pages
+					'total'   => $wp_query->max_num_pages,
 				) );
 				?>
 			</div>
