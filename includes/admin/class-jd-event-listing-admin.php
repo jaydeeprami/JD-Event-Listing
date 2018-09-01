@@ -163,10 +163,6 @@ class JD_Event_Listing_Admin {
 
 		// Location event options.
 		$show_google_map = get_post_meta( $post_id, 'jd_event_show_google_map', true );
-		$checked         = '';
-		if ( $show_google_map ) {
-			$checked = 'checked';
-		}
 
 		// Event URL.
 		$jd_event_url = get_post_meta( $post_id, 'jd_event_url', true );
@@ -211,7 +207,7 @@ class JD_Event_Listing_Admin {
 			<p>
 				<label>
 					<strong><?php esc_html_e( 'Show Google Map', 'jd-event-listing' ); ?></strong>
-					<input type="checkbox" id="jd_event_show_google_map" name="jd_event_show_google_map" <?php echo $checked; ?> value="false" />
+					<input type="checkbox" id="jd_event_show_google_map" name="jd_event_show_google_map" <?php checked( 1, $show_google_map ); ?> value="false" />
 				</label>
 			</p>
 
