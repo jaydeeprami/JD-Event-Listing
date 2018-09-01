@@ -46,7 +46,7 @@ $jd_event_address = ! empty( $jd_event_address ) ? $jd_event_address : '';
 $jd_event_listing = get_option( 'jd_event_listing' );
 $api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && ! empty( $jd_event_listing['jd_event_google_map_api'] ) ) ? $jd_event_listing['jd_event_google_map_api'] : '';
 ?>
-<article id="<?php echo absint( $post_id ); ?>" class="jd-event-listing">
+<article id="post-<?php echo absint( $post_id ); ?>" class="jd-event-listing">
 
 	<header class="entry-header">
 		<h2 class="entry-title">
@@ -89,7 +89,7 @@ $api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && !
 
 			<?php if ( ! empty( $api_key ) ) : ?>
 				<div class="event-detail">
-					<button class="show_google_map"><?php esc_html_e( 'Show Google Map', 'jd-event-listing' ); ?></button>
+					<button id="<?php echo absint( $post_id ); ?>" class="show_google_map"><?php esc_html_e( 'Show Google Map', 'jd-event-listing' ); ?></button>
 				</div>
 			<?php endif; ?>
 		</div>
