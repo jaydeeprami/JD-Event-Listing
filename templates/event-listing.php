@@ -87,11 +87,14 @@ $api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && !
 				<span class="jd_event_address"><?php echo esc_html( $jd_event_address ); ?></span>
 			</div>
 
-			<?php if ( ! empty( $api_key ) ) : ?>
-				<div class="event-detail">
-					<button id="<?php echo absint( $post_id ); ?>" class="show_google_map"><?php esc_html_e( 'Show Google Map', 'jd-event-listing' ); ?></button>
-				</div>
-			<?php endif; ?>
+			<div class="event-detail">
+				<?php if ( ! empty( $api_key ) ) : ?>
+					<button id="<?php echo absint( $post_id ); ?>" class="jd-event-show-google-map"><?php esc_html_e( 'Show Google Map', 'jd-event-listing' ); ?></button>
+				<?php endif; ?>
+
+				<button data-postid="<?php echo absint( $post_id ); ?>" class="jd-event-google-calendar"><?php esc_html_e( 'Add to Google Calendar', 'jd-event-listing' ); ?></button>
+			</div>
+
 		</div>
 	</header><!-- .entry-header -->
 

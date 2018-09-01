@@ -4,7 +4,7 @@
 
 jQuery( document ).ready( function ( $ ) {
 
-	$( 'body' ).on( 'click', '.show_google_map', function () {
+	$( 'body' ).on( 'click', '.jd-event-show-google-map', function () {
 
 		var $this = $( this ),
 			event_id = $this.attr( 'id' ),
