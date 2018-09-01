@@ -26,6 +26,9 @@ class JD_Event_Listing_Admin {
 
 		// Save Event details.
 		add_action( 'save_post', array( $this, 'save_events_details' ), 10, 2 );
+
+		// Show admin notice.
+		add_action( 'admin_notices', array( $this, 'display_admin_notice' ) );
 	}
 
 	/**
@@ -69,14 +72,15 @@ class JD_Event_Listing_Admin {
 
 			wp_enqueue_script( JD_EVENT_LISTING_SLUG );
 
-			$api_key = 'AIzaSyA41O0v8uA8x89hWFe0_oB6oAZ2dTa3INg';
-			wp_enqueue_script( 'google-maps-native', "http://maps.googleapis.com/maps/api/js?key=" . $api_key );
+			$jd_event_listing = get_option( 'jd_event_listing' );
+			$api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && ! empty( $jd_event_listing['jd_event_google_map_api'] ) ) ? $jd_event_listing['jd_event_google_map_api'] : '';
 
+			wp_enqueue_script( 'google-maps-native', "http://maps.googleapis.com/maps/api/js?key=" . $api_key );
 			$jd_event_lat = get_post_meta( $post_id, 'jd_event_lat', true );
-			$jd_event_lat = ! empty( $jd_event_lat ) ? $jd_event_lat : '42.6977';
+			$jd_event_lat = ! empty( $jd_event_lat ) ? $jd_event_lat : '42.698334';
 
 			$jd_event_long = get_post_meta( $post_id, 'jd_event_long', true );
-			$jd_event_long = ! empty( $jd_event_long ) ? $jd_event_long : '-23.3219';
+			$jd_event_long = ! empty( $jd_event_long ) ? $jd_event_long : '23.319941';
 
 			$show_google_map = get_post_meta( $post_id, 'jd_event_show_google_map', true );
 
@@ -280,12 +284,39 @@ class JD_Event_Listing_Admin {
 		$jd_event_address = ! empty( $global_post['jd_event_address'] ) ? sanitize_text_field( $global_post['jd_event_address'] ) : '';
 		update_post_meta( $post_id, 'jd_event_address', $jd_event_address );
 
+		// Save lat and long only if google map show.
 		if ( $jd_event_show_google_map ) {
-			$jd_event_lat  = ! empty( $global_post['jd_event_lat'] ) ? sanitize_text_field( $global_post['jd_event_lat'] ) : '42.6977';
-			$jd_event_long = ! empty( $global_post['jd_event_long'] ) ? sanitize_text_field( $global_post['jd_event_long'] ) : '-23.3219';
+			$jd_event_lat  = ! empty( $global_post['jd_event_lat'] ) ? sanitize_text_field( $global_post['jd_event_lat'] ) : '42.698334';
+			$jd_event_long = ! empty( $global_post['jd_event_long'] ) ? sanitize_text_field( $global_post['jd_event_long'] ) : '23.319941';
 
 			update_post_meta( $post_id, 'jd_event_lat', $jd_event_lat );
 			update_post_meta( $post_id, 'jd_event_long', $jd_event_long );
+		}
+	}
+
+	/**
+	 * Show admin notice.
+	 *
+	 * Display admin notice if Google map api key not set.
+	 *
+	 * @since 1.0.0
+	 */
+	public function display_admin_notice() {
+
+		$class            = 'notice notice-error';
+		$jd_event_listing = get_option( 'jd_event_listing' );
+		$api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && ! empty( $jd_event_listing['jd_event_google_map_api'] ) ) ? $jd_event_listing['jd_event_google_map_api'] : '';
+
+		$message = sprintf( '<h4>%1$s</h4> 
+				<p><a href="%3$s">%2$s</a> %4$s</p>',
+			__( 'Enter a Google Maps API key', 'jd-event-listing' ),
+			__( 'Please enter your api key', 'jd-event-listing' ),
+			esc_url( admin_url( 'options-general.php?page=jd-event-settings' ) ),
+			__( 'to use Google map in your site.', 'jd-event-listing' )
+		);
+
+		if ( empty( $api_key ) ) {
+			printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), $message );
 		}
 	}
 }
