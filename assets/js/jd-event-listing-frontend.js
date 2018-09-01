@@ -4,22 +4,15 @@
 
 jQuery( document ).ready( function ( $ ) {
 
-	$( '.jd-event-listing' ).each( function ( index ) {
-
-		var $this = $( this ),
-			event_id = $this.attr( 'id' ),
-			jd_event_address = $this.find( '.jd_event_address' ).text();
-
-		showMap( jd_event_address, event_id );
-
-	} );
-
-
 	$( 'body' ).on( 'click', '.show_google_map', function () {
 
 		var $this = $( this ),
+			event_id = $this.attr( 'id' ),
 			article = $this.parents( 'article.jd-event-listing' ),
+			jd_event_address = article.find( '.jd_event_address' ).text(),
 			google_map_element = article.find( '#jd-event-google-map-modal' );
+
+		showMap( jd_event_address, event_id );
 
 		google_map_element.dialog( { width: 500, height: 400 } );
 
