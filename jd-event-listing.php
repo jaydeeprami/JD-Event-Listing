@@ -100,6 +100,12 @@ if ( ! class_exists( 'JD_Event_Listing' ) ) :
 
 			// Set up localization on init Hook.
 			add_action( 'init', array( $this, 'load_textdomain' ), 0 );
+
+			// Register Event post type.
+			add_action( 'init', array( $this, 'register_events_cpt' ) );
+
+			// Call plugin custom archive page.
+			add_filter( 'template_include', array( $this, 'jd_event_set_template' ), 99, 1 );
 		}
 
 
@@ -236,6 +242,71 @@ if ( ! class_exists( 'JD_Event_Listing' ) ) :
 			$notice_desc .= '<p>' . __( 'Hey, we\'ve noticed that you\'re running an outdated version of PHP. Please upgrade your PHP version to use this Plugin.', 'jd-event-listing' ) . '</p>';
 
 			echo sprintf( '<div class="notice notice-error">%1$s</div>', wp_kses_post( $notice_desc ) );
+		}
+
+		/**
+		 * Register Custom Post type for Event.
+		 *
+		 * @since 1.0.0
+		 */
+		public function register_events_cpt() {
+			$labels = array(
+				'name'               => _x( 'Events', 'event type general name', 'jd-event-list' ),
+				'singular_name'      => _x( 'Event', 'event type singular name', 'jd-event-list' ),
+				'menu_name'          => _x( 'Events', 'admin menu', 'jd-event-list' ),
+				'name_admin_bar'     => _x( 'Event', 'add new on admin bar', 'jd-event-list' ),
+				'add_new'            => _x( 'Add New', 'event', 'jd-event-list' ),
+				'add_new_item'       => __( 'Add New Event', 'jd-event-list' ),
+				'new_item'           => __( 'New Event', 'jd-event-list' ),
+				'edit_item'          => __( 'Edit Event', 'jd-event-list' ),
+				'view_item'          => __( 'View Event', 'jd-event-list' ),
+				'all_items'          => __( 'All Events', 'jd-event-list' ),
+				'search_items'       => __( 'Search Events', 'jd-event-list' ),
+				'parent_item_colon'  => __( 'Parent Events:', 'jd-event-list' ),
+				'not_found'          => __( 'No events found.', 'jd-event-list' ),
+				'not_found_in_trash' => __( 'No events found in Trash.', 'jd-event-list' ),
+			);
+
+			$args = array(
+				'labels'             => $labels,
+				'description'        => __( 'Event Listing', 'jd-event-list' ),
+				'public'             => true,
+				'publicly_queryable' => true,
+				'show_ui'            => true,
+				'show_in_menu'       => true,
+				'query_var'          => true,
+				'capability_type'    => 'post',
+				'has_archive'        => true,
+				'hierarchical'       => false,
+				'menu_position'      => 20,
+				'menu_icon'          => 'dashicons-calendar-alt',
+				'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields' ),
+			);
+
+			register_post_type( 'events', $args );
+		}
+
+		/**
+		 * Load Event template.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $template Absolute path to template.
+		 *
+		 * @return string Absolute path to template
+		 */
+		public function jd_event_set_template( $template ) {
+
+			$post_type = get_post_type();
+			if ( 'events' === $post_type ) {
+				$template = JD_EVENT_LISTING_PLUGIN_DIR . 'templates/archive-events.php';
+			}
+
+			if ( is_post_type_archive( 'events' ) ) {
+				$template = JD_EVENT_LISTING_PLUGIN_DIR . 'templates/archive-events.php';
+			}
+
+			return $template;
 		}
 
 	}
