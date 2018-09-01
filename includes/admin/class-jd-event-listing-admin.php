@@ -73,14 +73,17 @@ class JD_Event_Listing_Admin {
 			wp_enqueue_script( 'google-maps-native', "http://maps.googleapis.com/maps/api/js?key=" . $api_key );
 
 			$jd_event_lat = get_post_meta( $post_id, 'jd_event_lat', true );
-			$jd_event_lat = ! empty( $jd_event_lat ) ? $jd_event_lat : '';
+			$jd_event_lat = ! empty( $jd_event_lat ) ? $jd_event_lat : '42.6977';
 
 			$jd_event_long = get_post_meta( $post_id, 'jd_event_long', true );
-			$jd_event_long = ! empty( $jd_event_long ) ? $jd_event_long : '';
+			$jd_event_long = ! empty( $jd_event_long ) ? $jd_event_long : '-23.3219';
 
-			wp_localize_script( 'jd_lat_long', 'getLatLong', array(
-				'lat'  => $jd_event_lat,
-				'long' => $jd_event_long,
+			$show_google_map = get_post_meta( $post_id, 'jd_event_show_google_map', true );
+
+			wp_localize_script( JD_EVENT_LISTING_SLUG, 'getLatLong', array(
+				'lat'         => $jd_event_lat,
+				'long'        => $jd_event_long,
+				'is_map_show' => $show_google_map,
 			) );
 		}
 	}
