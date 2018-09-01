@@ -32,8 +32,19 @@ class JD_Event_Listing_Public {
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 		// Registering the recovery plugin JS script.
-		wp_register_script( JD_EVENT_LISTING_SLUG, JD_EVENT_LISTING_PLUGIN_URL . 'assets/js/jd-event-listing-frontend' . $suffix . '.js', array( 'jQuery' ), JD_EVENT_LISTING_VERSION, false );
+		wp_register_script( JD_EVENT_LISTING_SLUG, JD_EVENT_LISTING_PLUGIN_URL . 'assets/js/jd-event-listing-frontend' . $suffix . '.js', array( 'jquery', 'jquery-ui-dialog' ), JD_EVENT_LISTING_VERSION, false );
 		wp_enqueue_script( JD_EVENT_LISTING_SLUG );
+
+		$jd_event_listing = get_option( 'jd_event_listing' );
+		$api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && ! empty( $jd_event_listing['jd_event_google_map_api'] ) ) ? $jd_event_listing['jd_event_google_map_api'] : '';
+
+		wp_enqueue_script( 'google-maps-native', "http://maps.googleapis.com/maps/api/js?key=" . $api_key );
+
+		wp_localize_script( JD_EVENT_LISTING_SLUG, 'getLatLong', array(
+			'lat'                => '42.698334',
+			'long'               => '23.319941',
+			'geo_code_error_msg' => __( 'Geocode was not successful for the following reason:', 'jd-event-list' ),
+		) );
 	}
 
 
@@ -49,5 +60,10 @@ class JD_Event_Listing_Public {
 		// Enqueuing give fee recovery frontend side css.
 		wp_register_style( JD_EVENT_LISTING_SLUG, JD_EVENT_LISTING_PLUGIN_URL . 'assets/css/jd-event-listing-frontend' . $suffix . '.css', array(), JD_EVENT_LISTING_VERSION, 'all' );
 		wp_enqueue_style( JD_EVENT_LISTING_SLUG );
+
+		wp_enqueue_style( 'jd-event-jquery-ui' , '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
+
 	}
 }
+
+new JD_Event_Listing_Public();
