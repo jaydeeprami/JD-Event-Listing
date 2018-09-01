@@ -4,15 +4,37 @@
 
 jQuery( document ).ready( function ( $ ) {
 
+	var map_section = $( '#js_event_location_map' ),
+		is_map_show = $( '#jd_event_show_google_map' ).prop( 'checked' );
+
+	// Hide map section by default.
+	map_section.hide();
+
+	// Show Map if checkbox checked.
+	if ( is_map_show ) {
+		map_section.show();
+	}
+
 	// Event start date.
-	$( "#jd_event_start_date" ).datepicker({
-		dateFormat : "dd-mm-yy"
-	});
+	$( "#jd_event_start_date" ).datepicker( {
+		dateFormat: "dd/mm/yy"
+	} );
 
 	// Event end date.
-	$( "#jd_event_end_date" ).datepicker({
-		dateFormat : "dd-mm-yy"
-	});
+	$( "#jd_event_end_date" ).datepicker( {
+		dateFormat: "dd/mm/yy"
+	} );
+
+	$( document ).on( 'click', '#jd_event_show_google_map', function () {
+
+		var $this = $( this );
+		if ( $this.is( ':checked' ) ) {
+			map_section.show();
+		} else {
+			map_section.hide();
+		}
+
+	} );
 
 	/**
 	 * Map Initialize.
@@ -20,7 +42,7 @@ jQuery( document ).ready( function ( $ ) {
 	function initialize() {
 		var map_canvas = document.getElementById( 'js_event_location_map' );
 
-		var my_lat_long = new google.maps.LatLng( 40.713956, -74.006653 );
+		var my_lat_long = new google.maps.LatLng( getLatLong.lat, getLatLong.long );
 
 		var map_options = {
 			center: my_lat_long,
@@ -61,6 +83,9 @@ jQuery( document ).ready( function ( $ ) {
 		} );
 	}
 
-	google.maps.event.addDomListener( window, 'load', initialize );
+	// Initialize Map if Admin want to show.
+	if ( getLatLong.is_map_show ) {
+		google.maps.event.addDomListener( window, 'load', initialize );
+	}
 
 } );
