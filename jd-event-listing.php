@@ -106,6 +106,9 @@ if ( ! class_exists( 'JD_Event_Listing' ) ) :
 
 			// Call plugin custom archive page.
 			add_filter( 'template_include', array( $this, 'jd_event_set_template' ), 99, 1 );
+
+			// Set post per page for archive.
+			add_action( 'pre_get_posts', array( $this, 'event_post_per_page' ) );
 		}
 
 
@@ -308,6 +311,19 @@ if ( ! class_exists( 'JD_Event_Listing' ) ) :
 			}
 
 			return $template;
+		}
+
+		/**
+		 * Set post per page for access archive page when pagination.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param WP_Query $query Query object.
+		 */
+		public function event_post_per_page( $query ) {
+			if ( $query->is_archive( 'events' ) ) {
+				set_query_var( 'posts_per_page', 1 );
+			}
 		}
 
 	}
