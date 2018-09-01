@@ -25,6 +25,9 @@ jQuery( document ).ready( function ( $ ) {
 		dateFormat: "dd/mm/yy"
 	} );
 
+	/**
+	 *  Show/Hide Map based on action.
+	 */
 	$( document ).on( 'click', '#jd_event_show_google_map', function () {
 
 		var $this = $( this );
@@ -33,6 +36,18 @@ jQuery( document ).ready( function ( $ ) {
 		} else {
 			map_section.hide();
 		}
+
+	} );
+
+	/**
+	 * Get Geo Position based on address and update lat and long.
+	 */
+	$( document ).on( 'focusout', '#jd_event_address', function () {
+
+		var $this = $( this ),
+			address = $this.val();
+
+		getLatLongFromAddress( address );
 
 	} );
 
@@ -83,9 +98,45 @@ jQuery( document ).ready( function ( $ ) {
 		} );
 	}
 
-	// Initialize Map if Admin want to show.
-	if ( getLatLong.is_map_show ) {
-		google.maps.event.addDomListener( window, 'load', initialize );
+	/**
+	 * Get Position and new lat long based on address.
+	 * @param jd_event_address
+	 */
+	function getLatLongFromAddress( jd_event_address ) {
+		var geocoder;
+		geocoder = new google.maps.Geocoder();
+
+		geocoder.geocode( { 'address': jd_event_address }, function ( results, status ) {
+			var map_canvas = document.getElementById( 'js_event_location_map' );
+			var my_lat_long = new google.maps.LatLng( getLatLong.lat, getLatLong.long );
+
+			var map_options = {
+				center: my_lat_long,
+				zoom: 8,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+
+			var map = new google.maps.Map( map_canvas, map_options );
+
+			if ( status === google.maps.GeocoderStatus.OK ) {
+				map.setCenter( results[ 0 ].geometry.location );
+
+				var marker = new google.maps.Marker( {
+					map: map,
+					position: results[ 0 ].geometry.location
+				} );
+
+				document.getElementById( "jd_event_lat" ).value = results[ 0 ].geometry.location.lat();
+				document.getElementById( "jd_event_long" ).value = results[ 0 ].geometry.location.lng();
+				document.getElementById( "jd_event_address" ).value = results[ 0 ].formatted_address;
+
+			} else {
+				alert( getLatLong.geo_code_error_msg + status );
+			}
+		} );
 	}
+
+	// Initialize Map if Admin want to show.
+	google.maps.event.addDomListener( window, 'load', initialize );
 
 } );
