@@ -186,6 +186,8 @@ if ( ! class_exists( 'JD_Event_Listing' ) ) :
 
 			if ( is_admin() ) {
 				require_once JD_EVENT_LISTING_PLUGIN_DIR . '/includes/admin/class-jd-event-listing-admin.php';
+
+				require_once JD_EVENT_LISTING_PLUGIN_DIR . '/includes/admin/class-jd-event-listing-admin-settings.php';
 			}
 		}
 
