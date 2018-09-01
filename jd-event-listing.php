@@ -189,6 +189,7 @@ if ( ! class_exists( 'JD_Event_Listing' ) ) :
 		private function includes() {
 
 			require_once JD_EVENT_LISTING_PLUGIN_DIR . '/includes/public/class-jd-event-listing-public.php';
+			require_once JD_EVENT_LISTING_PLUGIN_DIR . '/includes/jd-event-listing-helper.php';
 
 			if ( is_admin() ) {
 				require_once JD_EVENT_LISTING_PLUGIN_DIR . '/includes/admin/class-jd-event-listing-admin.php';
