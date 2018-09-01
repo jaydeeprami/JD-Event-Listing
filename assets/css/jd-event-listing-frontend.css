@@ -21,4 +21,11 @@
 	font-weight: 600;
 }
 
+.jd_events_pagination {
+	float: left;
+	width: 100%;
+	margin: auto;
+	text-align: center;
+}
+
 
