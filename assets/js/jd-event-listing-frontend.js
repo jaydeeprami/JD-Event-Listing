@@ -16,9 +16,21 @@ jQuery( document ).ready( function ( $ ) {
 
 		showMap( jd_event_address, event_id );
 
-		google_map_element.dialog( { width: 500, height: 400 } );
+		google_map_element.dialog( {
+			width: 500,
+			height: 400,
+			closeOnEscape: true,
+			close: closeMapModal,
+		} );
 
 	} );
+
+	/**
+	 * Close Map Modal.
+	 */
+	function closeMapModal( ) {
+		$(this).dialog('destroy');
+	}
 
 	/**
 	 * Get Position and new lat long based on address.
