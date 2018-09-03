@@ -2,7 +2,10 @@
 
 A simple Event listing with Google Map and Google Calendar integrate for Create Event.
 
-Welcome to the JD Event Listing repository on GitHub. Here you can browse the source, look at open issues and keep track of development
+Welcome to the JD Event Listing repository on GitHub. Here you can browse the source, look at open issues and keep track of development.
+
+## Video of configure Plugin and Calendar Event
+<a href="https://www.useloom.com/share/57408ea876684e79a6b2abe61d7f1a4f">https://www.useloom.com/share/57408ea876684e79a6b2abe61d7f1a4f</a>
 
 ## Features
 * Create Event with fields Event URL, Event Location (With Google Map), Event URL (For Set Third Party URL), Event date (Start and End date with time)
