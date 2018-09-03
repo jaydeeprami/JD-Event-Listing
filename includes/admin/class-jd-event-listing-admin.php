@@ -217,20 +217,20 @@ class JD_Event_Listing_Admin {
 		}
 
 		// Check nonce.
-		if ( ! wp_verify_nonce( $global_post['event_details'], 'jd_event_details' ) ) {
+		if ( isset( $global_post['event_details'] ) && ! wp_verify_nonce( $global_post['event_details'], 'jd_event_details' ) ) {
 			return $post_id;
 		}
 
 		// Event Start date.
-		$jd_event_start_date = ! empty( $global_post['jd_event_start_date'] ) ? sanitize_text_field( $global_post['jd_event_start_date'] ) : date( 'd/m/y' );
+		$jd_event_start_date = ( isset( $global_post['jd_event_start_date'] ) && ! empty( $global_post['jd_event_start_date'] ) ) ? sanitize_text_field( $global_post['jd_event_start_date'] ) : date( 'Y-m-d H:i' );
 		update_post_meta( $post_id, 'jd_event_start_date', $jd_event_start_date );
 
 		// Event End date.
-		$jd_event_end_date = ! empty( $global_post['jd_event_end_date'] ) ? sanitize_text_field( $global_post['jd_event_end_date'] ) : date( 'd/m/y' );
+		$jd_event_end_date = ( isset( $global_post['jd_event_end_date'] ) && ! empty( $global_post['jd_event_end_date'] ) ) ? sanitize_text_field( $global_post['jd_event_end_date'] ) : date( 'Y-m-d H:i' );
 		update_post_meta( $post_id, 'jd_event_end_date', $jd_event_end_date );
 
 		// Event URL.
-		$jd_event_url = ! empty( $global_post['jd_event_url'] ) ? esc_url( $global_post['jd_event_url'] ) : '';
+		$jd_event_url = ( isset( $global_post['jd_event_url'] ) && ! empty( $global_post['jd_event_url'] ) ) ? esc_url( $global_post['jd_event_url'] ) : '';
 		update_post_meta( $post_id, 'jd_event_url', $jd_event_url );
 
 		// Show Google Map or not.
@@ -238,13 +238,13 @@ class JD_Event_Listing_Admin {
 		update_post_meta( $post_id, 'jd_event_show_google_map', $jd_event_show_google_map );
 
 		// Event location address.
-		$jd_event_address = ! empty( $global_post['jd_event_address'] ) ? sanitize_text_field( $global_post['jd_event_address'] ) : '';
+		$jd_event_address = ( isset( $global_post['jd_event_address'] ) && ! empty( $global_post['jd_event_address'] ) ) ? sanitize_text_field( $global_post['jd_event_address'] ) : '';
 		update_post_meta( $post_id, 'jd_event_address', $jd_event_address );
 
 		// Save lat and long only if google map show.
 		if ( $jd_event_show_google_map ) {
-			$jd_event_lat  = ! empty( $global_post['jd_event_lat'] ) ? sanitize_text_field( $global_post['jd_event_lat'] ) : '42.698334';
-			$jd_event_long = ! empty( $global_post['jd_event_long'] ) ? sanitize_text_field( $global_post['jd_event_long'] ) : '23.319941';
+			$jd_event_lat  = ( isset( $global_post['jd_event_lat'] ) && ! empty( $global_post['jd_event_lat'] ) ) ? sanitize_text_field( $global_post['jd_event_lat'] ) : '42.698334';
+			$jd_event_long = ( isset( $global_post['jd_event_long'] ) && ! empty( $global_post['jd_event_long'] ) ) ? sanitize_text_field( $global_post['jd_event_long'] ) : '23.319941';
 
 			update_post_meta( $post_id, 'jd_event_lat', $jd_event_lat );
 			update_post_meta( $post_id, 'jd_event_long', $jd_event_long );
