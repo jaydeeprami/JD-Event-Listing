@@ -47,10 +47,9 @@ $jd_event_listing = get_option( 'jd_event_listing' );
 $api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && ! empty( $jd_event_listing['jd_event_google_map_api'] ) ) ? $jd_event_listing['jd_event_google_map_api'] : '';
 ?>
 <article id="post-<?php echo absint( $post_id ); ?>" class="jd-event-listing">
-
 	<header class="entry-header">
 		<h2 class="entry-title">
-			<a href="<?php echo esc_url( $event_link ); ?>" rel="bookmark"><?php echo esc_html( $event_title ); ?></a>
+			<a class="event-title-summary" data-summary="<?php echo esc_html( $event_title ); ?>" href="<?php echo esc_url( $event_link ); ?>" rel="bookmark"><?php echo esc_html( $event_title ); ?></a>
 		</h2>
 
 		<?php if ( ! is_single() ) : ?>
@@ -71,7 +70,17 @@ $api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && !
 
 		<div class="jd_event_details">
 			<div class="event-detail">
-				<i class="event_date" aria-hidden="true"><?php esc_html_e( 'Event Date: ', 'jd-event-listing' ); ?></i>
+				<?php
+				// Make date ISO standard for google calendar api.
+				$jd_event_start_date = str_replace( '/', '-', $jd_event_start_date );
+				$jd_event_start_date = str_replace( ' ', 'T', $jd_event_start_date );
+				$jd_event_start_date = $jd_event_start_date . ':00-00:00';
+
+				$jd_event_end_date = str_replace( '/', '-', $jd_event_end_date );
+				$jd_event_end_date = str_replace( ' ', 'T', $jd_event_end_date );
+				$jd_event_end_date = $jd_event_end_date . ':00-00:00';
+				?>
+				<i class="event_date" data-start_time="<?php echo esc_html( $jd_event_start_date ); ?>"  data-end_time="<?php echo esc_html( $jd_event_end_date ); ?>" aria-hidden="true"><?php esc_html_e( 'Event Date: ', 'jd-event-listing' ); ?></i>
 				<?php echo esc_html( $event_date ); ?>
 			</div>
 
@@ -93,6 +102,7 @@ $api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && !
 				<?php endif; ?>
 
 				<button data-postid="<?php echo absint( $post_id ); ?>" class="jd-event-google-calendar"><?php esc_html_e( 'Add to Google Calendar', 'jd-event-listing' ); ?></button>
+
 			</div>
 
 		</div>
@@ -101,6 +111,5 @@ $api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && !
 	<div id="jd-event-google-map-modal" title="<?php echo esc_html( $jd_event_address ); ?>">
 		<div style="width: 100%; height: 100%;" class="js_event_location_map" id="js_event_location_map_<?php echo absint( $post_id ); ?>"></div>
 	</div>
-
 </article><!-- #post-## -->
 
