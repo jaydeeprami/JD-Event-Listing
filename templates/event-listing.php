@@ -84,17 +84,21 @@ $api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && !
 				<?php echo esc_html( $event_date ); ?>
 			</div>
 
-			<div class="event-detail">
-				<i class="event_url"><?php esc_html_e( 'Event URL: ', 'jd-event-listing' ); ?></i>
-				<a target="_blank" href="<?php echo esc_url( $jd_event_url ); ?>">
-					<?php echo esc_url( $jd_event_url ); ?>
-				</a>
-			</div>
+			<?php if ( ! empty( $jd_event_url ) ) : ?>
+				<div class="event-detail">
+					<i class="event_url"><?php esc_html_e( 'Event URL: ', 'jd-event-listing' ); ?></i>
+					<a target="_blank" href="<?php echo esc_url( $jd_event_url ); ?>">
+						<?php echo esc_url( $jd_event_url ); ?>
+					</a>
+				</div>
+			<?php endif; ?>
 
-			<div class="event-detail">
-				<i class="event_address"><?php esc_html_e( 'Event Address: ', 'jd-event-listing' ); ?></i>
-				<span class="jd_event_address"><?php echo esc_html( $jd_event_address ); ?></span>
-			</div>
+			<?php if ( ! empty( $jd_event_address ) ) : ?>
+				<div class="event-detail">
+					<i class="event_address"><?php esc_html_e( 'Event Address: ', 'jd-event-listing' ); ?></i>
+					<span class="jd_event_address"><?php echo esc_html( $jd_event_address ); ?></span>
+				</div>
+			<?php endif; ?>
 
 			<div class="event-detail">
 				<button id="<?php echo absint( $post_id ); ?>" class="jd-event-show-google-map"><?php esc_html_e( 'Show Google Map', 'jd-event-listing' ); ?></button>
