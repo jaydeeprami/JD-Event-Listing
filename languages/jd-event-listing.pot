@@ -1,0 +1,202 @@
+# Copyright (C) 2018 JD_Event_Listing
+# This file is distributed under the same license as the JD_Event_Listing package.
+msgid ""
+msgstr ""
+"Project-Id-Version: JD_Event_Listing\n"
+"Report-Msgid-Bugs-To: https://github.com/jaydeeprami/JD-Event-Listing/issues/new\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
+"Language-Team: Jaydeep <jaydeep.ramii@gmail.com>\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: includes/admin/class-jd-event-listing-admin-settings.php:89
+msgid "Event Setting"
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin-settings.php:259
+msgid "Enter your settings below:"
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin-settings.php:283
+msgid "Enter the Google Map API Key here if you want to access Google Map on site."
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin-settings.php:287, includes/admin/class-jd-event-listing-admin-settings.php:311, includes/admin/class-jd-event-listing-admin-settings.php:333
+msgid "Get it from here"
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin-settings.php:311
+msgid "Enter the Google Calendar Client ID here if you want to create event in Google Calendar."
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin-settings.php:333
+msgid "Enter the Google Calendar API Key here if you want to create event in Google Calendar."
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin.php:91, includes/public/class-jd-event-listing-public.php:103
+msgid "Geocode was not successful for the following reason:"
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin.php:149
+msgid "Start date: "
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin.php:150
+msgid "Pick a start date"
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin.php:152
+msgid "End date: "
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin.php:153
+msgid "Pick a end date"
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin.php:161
+msgid "URL"
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin.php:162
+msgid "Enter Event URL"
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin.php:170, templates/event-listing.php:213
+msgid "Show Google Map"
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin.php:177
+msgid "Location"
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin.php:178
+msgid "Enter Event Location"
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin.php:269
+msgid "Enter a Google Maps API key"
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin.php:270
+msgid "Please enter your api key"
+msgstr ""
+
+#: includes/admin/class-jd-event-listing-admin.php:272
+msgid "to use Google map in your site."
+msgstr ""
+
+#: includes/public/class-jd-event-listing-public.php:127
+msgid "Event inserted successfully."
+msgstr ""
+
+#: includes/public/class-jd-event-listing-public.php:129
+msgid "Failed:"
+msgstr ""
+
+#: includes/public/class-jd-event-listing-public.php:131
+msgid "Please authorize before create event."
+msgstr ""
+
+#: jd-event-listing.php:489
+msgid "Your site could be faster and more secure with a newer PHP version."
+msgstr ""
+
+#: jd-event-listing.php:493
+msgid "Hey, we've noticed that you're running an outdated version of PHP. Please upgrade your PHP version to use this Plugin."
+msgstr ""
+
+#: jd-event-listing.php:517
+msgctxt "event type general name"
+msgid "Events"
+msgstr ""
+
+#: jd-event-listing.php:519
+msgctxt "event type singular name"
+msgid "Event"
+msgstr ""
+
+#: jd-event-listing.php:521
+msgctxt "admin menu"
+msgid "Events"
+msgstr ""
+
+#: jd-event-listing.php:523
+msgctxt "add new on admin bar"
+msgid "Event"
+msgstr ""
+
+#: jd-event-listing.php:525
+msgctxt "event"
+msgid "Add New"
+msgstr ""
+
+#: jd-event-listing.php:527
+msgid "Add New Event"
+msgstr ""
+
+#: jd-event-listing.php:529
+msgid "New Event"
+msgstr ""
+
+#: jd-event-listing.php:531
+msgid "Edit Event"
+msgstr ""
+
+#: jd-event-listing.php:533
+msgid "View Event"
+msgstr ""
+
+#: jd-event-listing.php:535
+msgid "All Events"
+msgstr ""
+
+#: jd-event-listing.php:537
+msgid "Search Events"
+msgstr ""
+
+#: jd-event-listing.php:539
+msgid "Parent Events:"
+msgstr ""
+
+#: jd-event-listing.php:541
+msgid "No events found."
+msgstr ""
+
+#: jd-event-listing.php:543
+msgid "No events found in Trash."
+msgstr ""
+
+#: jd-event-listing.php:553, templates/archive-events.php:29
+msgid "Event Listing"
+msgstr ""
+
+#: templates/event-listing.php:171
+msgid "Event Date: "
+msgstr ""
+
+#: templates/event-listing.php:183
+msgid "Event URL: "
+msgstr ""
+
+#: templates/event-listing.php:201
+msgid "Event Address: "
+msgstr ""
+
+#: templates/event-listing.php:219
+msgid "Add to Google Calendar"
+msgstr ""
+
+#: templates/no-event.php:15
+msgid "Nothing Found"
+msgstr ""
+
+#: templates/no-event.php:21
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for."
+msgstr ""
