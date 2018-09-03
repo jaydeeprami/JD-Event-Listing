@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The public-facing functionality of the plugin.
  *
@@ -32,7 +33,10 @@ class JD_Event_Listing_Public {
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 		// Registering the recovery plugin JS script.
-		wp_register_script( JD_EVENT_LISTING_SLUG, JD_EVENT_LISTING_PLUGIN_URL . 'assets/js/jd-event-listing-frontend' . $suffix . '.js', array( 'jquery', 'jquery-ui-dialog' ), JD_EVENT_LISTING_VERSION, false );
+		wp_register_script( JD_EVENT_LISTING_SLUG, JD_EVENT_LISTING_PLUGIN_URL . 'assets/js/jd-event-listing-frontend' . $suffix . '.js', array(
+			'jquery',
+			'jquery-ui-dialog'
+		), JD_EVENT_LISTING_VERSION, false );
 		wp_enqueue_script( JD_EVENT_LISTING_SLUG );
 
 		$jd_event_listing = get_option( 'jd_event_listing' );
@@ -61,7 +65,7 @@ class JD_Event_Listing_Public {
 		wp_register_style( JD_EVENT_LISTING_SLUG, JD_EVENT_LISTING_PLUGIN_URL . 'assets/css/jd-event-listing-frontend' . $suffix . '.css', array(), JD_EVENT_LISTING_VERSION, 'all' );
 		wp_enqueue_style( JD_EVENT_LISTING_SLUG );
 
-		wp_enqueue_style( 'jd-event-jquery-ui' , '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
+		wp_enqueue_style( 'jd-event-jquery-ui', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' );
 
 	}
 }
