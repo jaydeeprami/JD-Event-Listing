@@ -7,9 +7,9 @@
  * @package           JD_Event_Listing
  *
  * @wordpress-plugin
- * Plugin Name:       Event Listing
+ * Plugin Name:       JD Event Listing
  * Plugin URI:
- * Description:       List Events with integrate Google Calendar and Map.
+ * Description:       A simple Event listing with Google map and Google Calendar integrate for Create Event.
  * Version:           1.0.0
  * Author:            Jaydeep Rami
  * Author URI:        https://profiles.wordpress.org/jaydeep-rami/
