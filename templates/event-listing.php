@@ -98,7 +98,7 @@ $jd_event_google_calendar_client_id = ( isset( $jd_event_listing['jd_event_googl
 
 			<?php if ( ! empty( $jd_event_address ) ) : ?>
 				<div class="event-detail">
-					<i class="event_address"><?php esc_html_e( 'Event Address: ', 'jd-event-listing' ); ?></i>
+					<i class="event_address"><?php esc_html_e( 'Event Location: ', 'jd-event-listing' ); ?></i>
 					<span class="jd_event_address"><?php echo esc_html( $jd_event_address ); ?></span>
 				</div>
 			<?php endif; ?>

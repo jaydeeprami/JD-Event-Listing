@@ -186,7 +186,7 @@ msgid "Event URL: "
 msgstr ""
 
 #: templates/event-listing.php:201
-msgid "Event Address: "
+msgid "Event Location: "
 msgstr ""
 
 #: templates/event-listing.php:219
