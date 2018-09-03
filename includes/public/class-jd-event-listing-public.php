@@ -52,14 +52,19 @@ class JD_Event_Listing_Public {
 			'geo_code_error_msg' => __( 'Geocode was not successful for the following reason:', 'jd-event-list' ),
 		) );
 
+		$jd_event_listing = get_option( 'jd_event_listing' );
+
+		$jd_event_google_calendar_api_key = ( isset( $jd_event_listing['jd_event_google_calendar_api_key'] ) && ! empty( $jd_event_listing['jd_event_google_calendar_api_key'] ) ) ? $jd_event_listing['jd_event_google_calendar_api_key'] : '';
+
+		$jd_event_google_calendar_client_id = ( isset( $jd_event_listing['jd_event_google_calendar_client_id'] ) && ! empty( $jd_event_listing['jd_event_google_calendar_client_id'] ) ) ? $jd_event_listing['jd_event_google_calendar_client_id'] : '';
+
 		wp_localize_script( JD_EVENT_LISTING_SLUG, 'JDCalendarEventObject', array(
-			'client_id'        => '774611125158-fn2gu7cstpl8shtqjqshjv7oeb4d9r7q.apps.googleusercontent.com',
-			'api_key'          => 'AIzaSyCGBr6J-qneiYJXHDo93xo9IZD6LsKI-tU',
+			'client_id'        => $jd_event_google_calendar_client_id,
+			'api_key'          => $jd_event_google_calendar_api_key,
 			'event_inserted'   => __( 'Event inserted successfully.', 'jd-event-list' ),
 			'event_failed'     => __( 'Failed:', 'jd-event-list' ),
 			'google_authorize' => __( 'Please authorize before create event.', 'jd-event-list' ),
 		) );
-
 	}
 
 
