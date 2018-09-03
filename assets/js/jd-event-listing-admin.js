@@ -16,13 +16,11 @@ jQuery( document ).ready( function ( $ ) {
 	}
 
 	// Event start date.
-	$( "#jd_event_start_date" ).datepicker( {
-		dateFormat: "dd/mm/yy"
+	$( "#jd_event_start_date" ).datetimepicker( {
 	} );
 
 	// Event end date.
-	$( "#jd_event_end_date" ).datepicker( {
-		dateFormat: "dd/mm/yy"
+	$( "#jd_event_end_date" ).datetimepicker( {
 	} );
 
 	/**
