@@ -28,8 +28,8 @@ jQuery( document ).ready( function ( $ ) {
 	/**
 	 * Close Map Modal.
 	 */
-	function closeMapModal( ) {
-		$(this).dialog('destroy');
+	function closeMapModal() {
+		$( this ).dialog( 'destroy' );
 	}
 
 	/**
@@ -85,6 +85,8 @@ jQuery( document ).ready( function ( $ ) {
 
 		if ( auth_status ) {
 			insertEvents( event_details );
+		} else {
+			alert( JDCalendarEventObject.google_authorize );
 		}
 
 	} );
