@@ -321,6 +321,11 @@ if ( ! class_exists( 'JD_Event_Listing' ) ) :
 		 * @param WP_Query $query Query object.
 		 */
 		public function event_post_per_page( $query ) {
+
+			if ( is_admin() ) {
+				return;
+			}
+
 			if ( $query->is_archive( 'events' ) ) {
 				set_query_var( 'posts_per_page', 1 );
 			}
