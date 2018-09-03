@@ -44,7 +44,10 @@ $jd_event_address = get_post_meta( $post_id, 'jd_event_address', true );
 $jd_event_address = ! empty( $jd_event_address ) ? $jd_event_address : '';
 
 $jd_event_listing = get_option( 'jd_event_listing' );
-$api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && ! empty( $jd_event_listing['jd_event_google_map_api'] ) ) ? $jd_event_listing['jd_event_google_map_api'] : '';
+
+$jd_event_google_calendar_api_key = ( isset( $jd_event_listing['jd_event_google_calendar_api_key'] ) && ! empty( $jd_event_listing['jd_event_google_calendar_api_key'] ) ) ? $jd_event_listing['jd_event_google_calendar_api_key'] : '';
+
+$jd_event_google_calendar_client_id = ( isset( $jd_event_listing['jd_event_google_calendar_client_id'] ) && ! empty( $jd_event_listing['jd_event_google_calendar_client_id'] ) ) ? $jd_event_listing['jd_event_google_calendar_client_id'] : '';
 ?>
 <article id="post-<?php echo absint( $post_id ); ?>" class="jd-event-listing">
 	<header class="entry-header">
@@ -80,7 +83,7 @@ $api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && !
 				$jd_event_end_date = str_replace( ' ', 'T', $jd_event_end_date );
 				$jd_event_end_date = $jd_event_end_date . ':00-00:00';
 				?>
-				<i class="event_date" data-start_time="<?php echo esc_html( $jd_event_start_date ); ?>"  data-end_time="<?php echo esc_html( $jd_event_end_date ); ?>" aria-hidden="true"><?php esc_html_e( 'Event Date: ', 'jd-event-listing' ); ?></i>
+				<i class="event_date" data-start_time="<?php echo esc_html( $jd_event_start_date ); ?>" data-end_time="<?php echo esc_html( $jd_event_end_date ); ?>" aria-hidden="true"><?php esc_html_e( 'Event Date: ', 'jd-event-listing' ); ?></i>
 				<?php echo esc_html( $event_date ); ?>
 			</div>
 
@@ -103,7 +106,9 @@ $api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && !
 			<div class="event-detail">
 				<button id="<?php echo absint( $post_id ); ?>" class="jd-event-show-google-map"><?php esc_html_e( 'Show Google Map', 'jd-event-listing' ); ?></button>
 
-				<button data-postid="<?php echo absint( $post_id ); ?>" class="jd-event-google-calendar"><?php esc_html_e( 'Add to Google Calendar', 'jd-event-listing' ); ?></button>
+				<?php if ( ! empty( $jd_event_google_calendar_api_key ) && ! empty( $jd_event_google_calendar_client_id ) ) : ?>
+					<button data-postid="<?php echo absint( $post_id ); ?>" class="jd-event-google-calendar"><?php esc_html_e( 'Add to Google Calendar', 'jd-event-listing' ); ?></button>
+				<?php endif; ?>
 
 			</div>
 
