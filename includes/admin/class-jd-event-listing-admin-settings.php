@@ -6,7 +6,7 @@
  * @package    JD_Event_Listing
  * @subpackage JD_Event_Listing/admin
  */
-class JD_Eevent_Listing_Admin_Setting {
+class JD_Event_Listing_Admin_Setting {
 	/**
 	 * Holds the values to be used in the fields callbacks
 	 *
@@ -69,16 +69,29 @@ class JD_Eevent_Listing_Admin_Setting {
 		add_settings_section( 'setting_section_id', // ID.
 			'JD Event Settings', // Title.
 			array( $this, 'print_section_info' ), // Callback.
-			'jd-event-setting-admin' // Page.
+			'jd-event-setting-admin'// Page.
 		);
 
-		add_settings_field( 'jd_event_google_map_api', 'Google Map API', array( $this, 'google_map_api_callback' ), 'jd-event-setting-admin', 'setting_section_id' );
+		add_settings_field( 'jd_event_google_map_api', // ID.
+			'Google Map API', // Title.
+			array( $this, 'google_map_api_callback' ), // Callback.
+			'jd-event-setting-admin', // Page.
+			'setting_section_id' // Section.
+		);
 
-		add_settings_field( 'jd_event_google_calendar_client_id', 'Google Calendar Client ID', array( $this, 'google_calendar_client_id_api_callback' ), 'jd-event-setting-admin', 'setting_section_id' );
+		add_settings_field( 'jd_event_google_calendar_client_id', // ID.
+			'Google Calendar Client ID', // Title.
+			array( $this, 'google_calendar_client_id_callback' ), // Callback.
+			'jd-event-setting-admin', // Page.
+			'setting_section_id' // Section.
+		);
 
-		add_settings_field( 'jd_event_google_calendar_secret_id', 'Google Calendar Secret Key', array( $this, 'google_calendar_client_secret_api_callback' ), 'jd-event-setting-admin', 'setting_section_id' );
-
-		add_settings_field( 'jd_event_google_calendar_oAuth', 'Google Calendar oAuth', array( $this, 'google_calendar_oAuth_button' ), 'jd-event-setting-admin', 'setting_section_id' );
+		add_settings_field( 'jd_event_google_calendar_api_key', // ID.
+			'Google Calendar API Key', // Title.
+			array( $this, 'google_calendar_api_key_callback' ), // Callback.
+			'jd-event-setting-admin', // Page.
+			'setting_section_id' // Section.
+		);
 
 	}
 
@@ -101,8 +114,8 @@ class JD_Eevent_Listing_Admin_Setting {
 			$new_input['jd_event_google_calendar_client_id'] = sanitize_text_field( $input['jd_event_google_calendar_client_id'] );
 		}
 
-		if ( isset( $input['jd_event_google_calendar_secret_id'] ) ) {
-			$new_input['jd_event_google_calendar_secret_id'] = sanitize_text_field( $input['jd_event_google_calendar_secret_id'] );
+		if ( isset( $input['jd_event_google_calendar_api_key'] ) ) {
+			$new_input['jd_event_google_calendar_api_key'] = sanitize_text_field( $input['jd_event_google_calendar_api_key'] );
 		}
 
 		return $new_input;
@@ -124,18 +137,36 @@ class JD_Eevent_Listing_Admin_Setting {
 	 */
 	public function google_map_api_callback() {
 		printf( '<input type="text" id="jd_event_google_map_api" name="jd_event_listing[jd_event_google_map_api]" value="%s" />', isset( $this->options['jd_event_google_map_api'] ) ? esc_attr( $this->options['jd_event_google_map_api'] ) : '' );
+
+		printf( '<p class="description" id="jd-google-calendar-api-description"> %1$s <a target="_blank" href="%2$s">%3$s </a>.</p>',
+			__( 'Enter the Google Map API Key here if you want to access Google Map on site.','jd-event-listing' ),
+			esc_url( 'https://console.cloud.google.com/apis/library/maps-backend.googleapis.com' ),
+			__( 'Get it from here', 'jd-event-listing' )
+		);
 	}
 
-	public function google_calendar_client_id_api_callback(){
+	/**
+	 * Google Calendar Client ID.
+	 *
+	 * @since 1.0.0
+	 */
+	public function google_calendar_client_id_callback() {
 		printf( '<input type="text" id="jd_event_google_calendar_client_id" name="jd_event_listing[jd_event_google_calendar_client_id]" value="%s" />', isset( $this->options['jd_event_google_calendar_client_id'] ) ? esc_attr( $this->options['jd_event_google_calendar_client_id'] ) : '' );
+
+		printf( '<p class="description" id="jd-google-calendar-api-description"> %1$s <a target="_blank" href="%2$s">%3$s </a>.</p>', __( 'Enter the Google Calendar Client ID here if you want to create event in Google Calendar.', 'jd-event-listing' ), esc_url( 'https://console.cloud.google.com/apis/library/calendar-json.googleapis.com' ), __( 'Get it from here', 'jd-event-listing' ) );
 	}
 
-	public function google_calendar_client_secret_api_callback(){
-		printf( '<input type="password" id="jd_event_google_calendar_secret_id" name="jd_event_listing[jd_event_google_calendar_secret_id]" value="%s" />', isset( $this->options['jd_event_google_calendar_secret_id'] ) ? esc_attr( $this->options['jd_event_google_calendar_secret_id'] ) : '' );
+	/**
+	 * Google Calendar API Key.
+	 *
+	 * @since 1.0.0
+	 */
+	public function google_calendar_api_key_callback() {
+		printf( '<input type="text" id="jd_event_google_calendar_api_key" name="jd_event_listing[jd_event_google_calendar_api_key]" value="%s" />', isset( $this->options['jd_event_google_calendar_api_key'] ) ? esc_attr( $this->options['jd_event_google_calendar_api_key'] ) : '' );
+
+		printf( '<p class="description" id="jd-google-calendar-api-description"> %1$s <a target="_blank" href="%2$s">%3$s </a>.</p>', __( 'Enter the Google Calendar API Key here if you want to create event in Google Calendar.', 'jd-event-listing' ), esc_url( 'https://console.cloud.google.com/apis/library/calendar-json.googleapis.com' ), __( 'Get it from here', 'jd-event-listing' ) );
+
 	}
-
-
-
 }
 
-new JD_Eevent_Listing_Admin_Setting();
+new JD_Event_Listing_Admin_Setting();
