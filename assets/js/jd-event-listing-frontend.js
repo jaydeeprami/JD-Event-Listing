@@ -4,8 +4,10 @@
 
 jQuery( document ).ready( function ( $ ) {
 
-	$( 'body' ).on( 'click', '.jd-event-show-google-map', function () {
+	var $body = $( 'body' );
 
+	// Show Google Map.
+	$body.on( 'click', '.jd-event-show-google-map', function () {
 		var $this = $( this ),
 			event_id = $this.attr( 'id' ),
 			article = $this.parents( 'article.jd-event-listing' ),
