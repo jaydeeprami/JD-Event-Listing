@@ -41,7 +41,7 @@ class JD_Event_Listing_Admin {
 		wp_register_style( JD_EVENT_LISTING_SLUG, JD_EVENT_LISTING_PLUGIN_URL . 'assets/css/jd-event-listing-admin' . $suffix . '.css', array( 'jquery-ui-style' ), JD_EVENT_LISTING_VERSION, 'all' );
 		wp_enqueue_style( JD_EVENT_LISTING_SLUG );
 
-		wp_enqueue_style( 'datetimepicker-style',JD_EVENT_LISTING_PLUGIN_URL . 'assets/css/jquery.datetimepicker.min.css' );
+		wp_enqueue_style( 'datetimepicker-style', JD_EVENT_LISTING_PLUGIN_URL . 'assets/css/jquery.datetimepicker.min.css' );
 
 		// Enqueue jQuery UI.
 		wp_enqueue_style( 'jquery-ui-style', '//ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/smoothness/jquery-ui.css', true );
@@ -65,17 +65,17 @@ class JD_Event_Listing_Admin {
 
 			// Enqueuing give fee recovery admin JS script.
 			wp_register_script( JD_EVENT_LISTING_SLUG, JD_EVENT_LISTING_PLUGIN_URL . 'assets/js/jd-event-listing-admin' . $suffix . '.js', array(
-				'jquery'
+				'jquery',
 			), JD_EVENT_LISTING_VERSION, false );
 
 			wp_enqueue_script( JD_EVENT_LISTING_SLUG );
 
-			wp_enqueue_script( 'datetimepicker-script',JD_EVENT_LISTING_PLUGIN_URL . 'assets/js/jquery.datetimepicker.full.min.js' );
+			wp_enqueue_script( 'datetimepicker-script', JD_EVENT_LISTING_PLUGIN_URL . 'assets/js/jquery.datetimepicker.full.min.js' );
 
 			$jd_event_listing = get_option( 'jd_event_listing' );
 			$api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && ! empty( $jd_event_listing['jd_event_google_map_api'] ) ) ? $jd_event_listing['jd_event_google_map_api'] : '';
 
-			wp_enqueue_script( 'google-maps-native', "http://maps.googleapis.com/maps/api/js?key=" . $api_key );
+			wp_enqueue_script( 'google-maps-native', 'http://maps.googleapis.com/maps/api/js?key=' . $api_key );
 			$jd_event_lat = get_post_meta( $post_id, 'jd_event_lat', true );
 			$jd_event_lat = ! empty( $jd_event_lat ) ? $jd_event_lat : '42.698334';
 
@@ -92,8 +92,6 @@ class JD_Event_Listing_Admin {
 			) );
 		}
 	}
-
-
 
 	/**
 	 * Register Event meta box in Event custom post type.
@@ -275,7 +273,7 @@ class JD_Event_Listing_Admin {
 		);
 
 		if ( empty( $api_key ) ) {
-			printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), wp_kses_post( $message) );
+			printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), wp_kses_post( $message ) );
 		}
 	}
 }

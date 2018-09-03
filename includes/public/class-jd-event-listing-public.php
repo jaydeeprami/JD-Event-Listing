@@ -35,16 +35,16 @@ class JD_Event_Listing_Public {
 		// Registering the recovery plugin JS script.
 		wp_register_script( JD_EVENT_LISTING_SLUG, JD_EVENT_LISTING_PLUGIN_URL . 'assets/js/jd-event-listing-frontend' . $suffix . '.js', array(
 			'jquery',
-			'jquery-ui-dialog'
+			'jquery-ui-dialog',
 		), JD_EVENT_LISTING_VERSION, false );
 		wp_enqueue_script( JD_EVENT_LISTING_SLUG );
 
 		$jd_event_listing = get_option( 'jd_event_listing' );
 		$api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && ! empty( $jd_event_listing['jd_event_google_map_api'] ) ) ? $jd_event_listing['jd_event_google_map_api'] : '';
 
-		wp_enqueue_script( 'google-maps-native', "http://maps.googleapis.com/maps/api/js?key=" . $api_key );
+		wp_enqueue_script( 'google-maps-native', 'http://maps.googleapis.com/maps/api/js?key=' . $api_key );
 
-		wp_enqueue_script( 'google-calendar', "https://apis.google.com/js/api.js" );
+		wp_enqueue_script( 'google-calendar', 'https://apis.google.com/js/api.js' );
 
 		wp_localize_script( JD_EVENT_LISTING_SLUG, 'getLatLong', array(
 			'lat'                => '42.698334',

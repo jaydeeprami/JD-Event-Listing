@@ -243,6 +243,7 @@ if ( ! class_exists( 'JD_Event_Listing' ) ) :
 			}
 
 			$notice_desc = '<p><strong>' . __( 'Your site could be faster and more secure with a newer PHP version.', 'jd-event-listing' ) . '</strong></p>';
+
 			$notice_desc .= '<p>' . __( 'Hey, we\'ve noticed that you\'re running an outdated version of PHP. Please upgrade your PHP version to use this Plugin.', 'jd-event-listing' ) . '</p>';
 
 			echo sprintf( '<div class="notice notice-error">%1$s</div>', wp_kses_post( $notice_desc ) );

@@ -73,6 +73,13 @@ class JD_Eevent_Listing_Admin_Setting {
 		);
 
 		add_settings_field( 'jd_event_google_map_api', 'Google Map API', array( $this, 'google_map_api_callback' ), 'jd-event-setting-admin', 'setting_section_id' );
+
+		add_settings_field( 'jd_event_google_calendar_client_id', 'Google Calendar Client ID', array( $this, 'google_calendar_client_id_api_callback' ), 'jd-event-setting-admin', 'setting_section_id' );
+
+		add_settings_field( 'jd_event_google_calendar_secret_id', 'Google Calendar Secret Key', array( $this, 'google_calendar_client_secret_api_callback' ), 'jd-event-setting-admin', 'setting_section_id' );
+
+		add_settings_field( 'jd_event_google_calendar_oAuth', 'Google Calendar oAuth', array( $this, 'google_calendar_oAuth_button' ), 'jd-event-setting-admin', 'setting_section_id' );
+
 	}
 
 	/**
@@ -88,6 +95,14 @@ class JD_Eevent_Listing_Admin_Setting {
 		$new_input = array();
 		if ( isset( $input['jd_event_google_map_api'] ) ) {
 			$new_input['jd_event_google_map_api'] = sanitize_text_field( $input['jd_event_google_map_api'] );
+		}
+
+		if ( isset( $input['jd_event_google_calendar_client_id'] ) ) {
+			$new_input['jd_event_google_calendar_client_id'] = sanitize_text_field( $input['jd_event_google_calendar_client_id'] );
+		}
+
+		if ( isset( $input['jd_event_google_calendar_secret_id'] ) ) {
+			$new_input['jd_event_google_calendar_secret_id'] = sanitize_text_field( $input['jd_event_google_calendar_secret_id'] );
 		}
 
 		return $new_input;
@@ -108,8 +123,19 @@ class JD_Eevent_Listing_Admin_Setting {
 	 * @since 1.0.0
 	 */
 	public function google_map_api_callback() {
-		printf( '<input type="text" id="title" name="jd_event_listing[jd_event_google_map_api]" value="%s" />', isset( $this->options['jd_event_google_map_api'] ) ? esc_attr( $this->options['jd_event_google_map_api'] ) : '' );
+		printf( '<input type="text" id="jd_event_google_map_api" name="jd_event_listing[jd_event_google_map_api]" value="%s" />', isset( $this->options['jd_event_google_map_api'] ) ? esc_attr( $this->options['jd_event_google_map_api'] ) : '' );
 	}
+
+	public function google_calendar_client_id_api_callback(){
+		printf( '<input type="text" id="jd_event_google_calendar_client_id" name="jd_event_listing[jd_event_google_calendar_client_id]" value="%s" />', isset( $this->options['jd_event_google_calendar_client_id'] ) ? esc_attr( $this->options['jd_event_google_calendar_client_id'] ) : '' );
+	}
+
+	public function google_calendar_client_secret_api_callback(){
+		printf( '<input type="password" id="jd_event_google_calendar_secret_id" name="jd_event_listing[jd_event_google_calendar_secret_id]" value="%s" />', isset( $this->options['jd_event_google_calendar_secret_id'] ) ? esc_attr( $this->options['jd_event_google_calendar_secret_id'] ) : '' );
+	}
+
+
+
 }
 
 new JD_Eevent_Listing_Admin_Setting();
