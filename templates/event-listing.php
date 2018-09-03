@@ -97,9 +97,7 @@ $api_key          = ( isset( $jd_event_listing['jd_event_google_map_api'] ) && !
 			</div>
 
 			<div class="event-detail">
-				<?php if ( ! empty( $api_key ) ) : ?>
-					<button id="<?php echo absint( $post_id ); ?>" class="jd-event-show-google-map"><?php esc_html_e( 'Show Google Map', 'jd-event-listing' ); ?></button>
-				<?php endif; ?>
+				<button id="<?php echo absint( $post_id ); ?>" class="jd-event-show-google-map"><?php esc_html_e( 'Show Google Map', 'jd-event-listing' ); ?></button>
 
 				<button data-postid="<?php echo absint( $post_id ); ?>" class="jd-event-google-calendar"><?php esc_html_e( 'Add to Google Calendar', 'jd-event-listing' ); ?></button>
 
