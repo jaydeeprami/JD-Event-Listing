@@ -92,19 +92,21 @@ jQuery( document ).ready( function ( $ ) {
 	} );
 
 	// Client ID and API key from the Developer Console.
-	var CLIENT_ID = JDCalendarEventObject.client_id;
-	var API_KEY = JDCalendarEventObject.api_key;
+	var calendar_client_id = JDCalendarEventObject.client_id;
+	var calendar_api_key = JDCalendarEventObject.api_key;
 
 	// Array of API discovery doc URLs.
-	var DISCOVERY_DOCS = [ "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest" ];
+	var discovery_doc = [ "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest" ];
 
 	// Authorization scopes required by the API; multiple scopes can be
 	// included, separated by spaces.
-	var SCOPES = "https://www.googleapis.com/auth/calendar";
+	var calendar_scope = "https://www.googleapis.com/auth/calendar";
 
 	// Handle oAuth.
 	window.onload = function () {
-		handleClientLoad();
+		if ( '' !== calendar_client_id && '' !== calendar_api_key ) {
+			handleClientLoad();
+		}
 	};
 
 	/**
@@ -120,10 +122,10 @@ jQuery( document ).ready( function ( $ ) {
 	 */
 	function initClient() {
 		gapi.client.init( {
-			apiKey: API_KEY,
-			clientId: CLIENT_ID,
-			discoveryDocs: DISCOVERY_DOCS,
-			scope: SCOPES
+			apiKey: calendar_api_key,
+			clientId: calendar_client_id,
+			discoveryDocs: discovery_doc,
+			scope: calendar_scope
 		} ).then( function () {
 			// Listen for sign-in state changes.
 			gapi.auth2.getAuthInstance().isSignedIn.listen( updateSigninStatus() );
