@@ -44,11 +44,22 @@ class JD_Event_Listing_Public {
 
 		wp_enqueue_script( 'google-maps-native', "http://maps.googleapis.com/maps/api/js?key=" . $api_key );
 
+		wp_enqueue_script( 'google-calendar', "https://apis.google.com/js/api.js" );
+
 		wp_localize_script( JD_EVENT_LISTING_SLUG, 'getLatLong', array(
 			'lat'                => '42.698334',
 			'long'               => '23.319941',
 			'geo_code_error_msg' => __( 'Geocode was not successful for the following reason:', 'jd-event-list' ),
 		) );
+
+		wp_localize_script( JD_EVENT_LISTING_SLUG, 'JDCalendarEventObject', array(
+			'client_id'        => '774611125158-fn2gu7cstpl8shtqjqshjv7oeb4d9r7q.apps.googleusercontent.com',
+			'api_key'          => 'AIzaSyCGBr6J-qneiYJXHDo93xo9IZD6LsKI-tU',
+			'event_inserted'   => __( 'Event inserted successfully.', 'jd-event-list' ),
+			'event_failed'     => __( 'Failed:', 'jd-event-list' ),
+			'google_authorize' => __( 'Please authorize before create event.', 'jd-event-list' ),
+		) );
+
 	}
 
 
