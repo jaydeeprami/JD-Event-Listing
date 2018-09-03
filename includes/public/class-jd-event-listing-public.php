@@ -49,7 +49,7 @@ class JD_Event_Listing_Public {
 		wp_localize_script( JD_EVENT_LISTING_SLUG, 'getLatLong', array(
 			'lat'                => '42.698334',
 			'long'               => '23.319941',
-			'geo_code_error_msg' => __( 'Geocode was not successful for the following reason:', 'jd-event-list' ),
+			'geo_code_error_msg' => __( 'Geocode was not successful for the following reason:', 'jd-event-listing' ),
 		) );
 
 		$jd_event_listing = get_option( 'jd_event_listing' );
@@ -61,9 +61,9 @@ class JD_Event_Listing_Public {
 		wp_localize_script( JD_EVENT_LISTING_SLUG, 'JDCalendarEventObject', array(
 			'client_id'        => $jd_event_google_calendar_client_id,
 			'api_key'          => $jd_event_google_calendar_api_key,
-			'event_inserted'   => __( 'Event inserted successfully.', 'jd-event-list' ),
-			'event_failed'     => __( 'Failed:', 'jd-event-list' ),
-			'google_authorize' => __( 'Please authorize before create event.', 'jd-event-list' ),
+			'event_inserted'   => __( 'Event inserted successfully.', 'jd-event-listing' ),
+			'event_failed'     => __( 'Failed:', 'jd-event-listing' ),
+			'google_authorize' => __( 'Please authorize before create event.', 'jd-event-listing' ),
 		) );
 	}
 

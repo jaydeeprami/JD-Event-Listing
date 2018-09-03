@@ -88,7 +88,7 @@ class JD_Event_Listing_Admin {
 				'lat'                => $jd_event_lat,
 				'long'               => $jd_event_long,
 				'is_map_show'        => $show_google_map,
-				'geo_code_error_msg' => __( 'Geocode was not successful for the following reason:', 'jd-event-list' ),
+				'geo_code_error_msg' => __( 'Geocode was not successful for the following reason:', 'jd-event-listing' ),
 			) );
 		}
 	}
@@ -146,11 +146,11 @@ class JD_Event_Listing_Admin {
 		<div id="jd_event_date_section">
 			<p>
 				<label for="jd_event_date">
-					<strong><?php esc_html_e( 'Start date: ', 'jd-event-list' ); ?></strong>
-					<input placeholder="<?php esc_html_e( 'Pick a start date', 'jd-event-list' ); ?>" type="text" id="jd_event_start_date" name="jd_event_start_date" value="<?php echo esc_attr( $jd_event_start_date ); ?>" />
+					<strong><?php esc_html_e( 'Start date: ', 'jd-event-listing' ); ?></strong>
+					<input placeholder="<?php esc_html_e( 'Pick a start date', 'jd-event-listing' ); ?>" type="text" id="jd_event_start_date" name="jd_event_start_date" value="<?php echo esc_attr( $jd_event_start_date ); ?>" />
 
-					<strong><?php esc_html_e( 'End date: ', 'jd-event-list' ); ?></strong>
-					<input type="text" placeholder="<?php esc_html_e( 'Pick a end date', 'jd-event-list' ); ?>" id="jd_event_end_date" name="jd_event_end_date" value="<?php echo esc_attr( $jd_event_end_date ); ?>" />
+					<strong><?php esc_html_e( 'End date: ', 'jd-event-listing' ); ?></strong>
+					<input type="text" placeholder="<?php esc_html_e( 'Pick a end date', 'jd-event-listing' ); ?>" id="jd_event_end_date" name="jd_event_end_date" value="<?php echo esc_attr( $jd_event_end_date ); ?>" />
 				</label>
 			</p>
 		</div>
