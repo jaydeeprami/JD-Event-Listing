@@ -289,6 +289,8 @@ if ( ! class_exists( 'JD_Event_Listing' ) ) :
 			);
 
 			register_post_type( 'events', $args );
+
+			flush_rewrite_rules();
 		}
 
 		/**
